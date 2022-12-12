@@ -6,7 +6,7 @@ df = pd.read_csv("./data_fix.csv")
 
 def run():
     st.title("Default Risk Prediction")
-    with st.buttonform():
+    with st.form("form"):
         Ext2 = st.number_input("Ext Source 2")
         Ext3 = st.number_input("Ext Source 3")
         YearLastPhoneChange = st.number_input("Year Last Phone Change")
