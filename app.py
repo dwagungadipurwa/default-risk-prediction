@@ -55,7 +55,7 @@ def run():
         prediction = response.text
         if prediction == "0":
             st.caption(f"The prediction from model: {prediction}")
-            st.success("The model predict this client is default risk")
+            st.success("The model predict this client is safe")
         else:
             st.success("The model predict this client is default risk")
             st.caption(f"The prediction from model: {prediction}")
