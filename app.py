@@ -6,12 +6,11 @@ df = pd.read_csv("./data_fix.csv")
 
 def run():
     st.title("Default Risk Prediction")
-    with st.form("form"):
+    with st.form("from"):
         Ext2 = st.number_input("Ext Source 2")
         Ext3 = st.number_input("Ext Source 3")
         YearLastPhoneChange = st.number_input("Year Last Phone Change")
-        RegRateCity0 = st.selectbox("Region Rate City 0 ", df.REGION_RATING_CLIENT_W_CITY.unique())
-        RegRateCity1 = st.selectbox("Region Rate City 1", df.REGION_RATING_CLIENT_W_CITY.unique())
+        RegRateCity = st.selectbox("Region Rate City", df.REGION_RATING_CLIENT_W_CITY.unique())
         YearsEmp = st.number_input("Years Employed",format = "%d", step = 1)
         RegRateCli = st.selectbox("Region Rate Client",
                                 df.REGION_RATING_CLIENT.unique())
@@ -39,8 +38,7 @@ def run():
             "Ext2": Ext2,
             "Ext3": Ext3,
             "YearLastPhoneChange": YearLastPhoneChange,
-            "RegRateCity0": RegRateCity0,
-            "RegRateCity1": RegRateCity1,
+            "RegRateCity0": RegRateCity,
             "YearsEmp": YearsEmp,
             "RegRateCli": RegRateCli,
             "AmtGd": AmtGd,
@@ -56,10 +54,9 @@ def run():
             "OwnCar": OwnCar}
 
     if st.button("Predict"):
-        # response = requests.post(
-        #     "http://ec2-108-137-4-27.ap-southeast-3.compute.amazonaws.com:8090/predict", json=data)
-        # prediction = response.text
-        prediction = 1
+        response = requests.post(
+            "http://ec2-108-137-4-27.ap-southeast-3.compute.amazonaws.com:8090/predict", json=data)
+        prediction = response.text
         if prediction == "0":
             st.caption(f"The prediction from model: {prediction}")
             st.success("The model predict this client is default risk")
