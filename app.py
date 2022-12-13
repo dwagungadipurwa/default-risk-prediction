@@ -38,7 +38,7 @@ def run():
             "Ext2": Ext2,
             "Ext3": Ext3,
             "YearLastPhoneChange": YearLastPhoneChange,
-            "RegRateCity0": RegRateCity,
+            "RegRateCity": RegRateCity,
             "YearsEmp": YearsEmp,
             "RegRateCli": RegRateCli,
             "AmtGd": AmtGd,
