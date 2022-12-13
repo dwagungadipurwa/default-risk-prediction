@@ -29,29 +29,29 @@ def run():
     OrgType = st.selectbox(
         "Organization Type", df.ORGANIZATION_TYPE.unique())
     OwnCar = st.selectbox(
-        "Own Car", df.FLAG_OWN_CAR.unique())       
+        "Own Car", df.FLAG_OWN_CAR.unique())
     data = {
-        "Ext2": Ext2,
-        "Ext3": Ext3,
-        "YearLastPhoneChange": YearLastPhoneChange,
-        "RegRateCity": RegRateCity,
-        "YearsEmp": YearsEmp,
-        "RegRateCli": RegRateCli,
-        "AmtGd": AmtGd,
-        "AmtBlcMean": AmtBlcMean,
-        "AmtCredit": AmtCredit,
-        "DaysBirth": DaysBirth,
-        "FloMaxMode": FloMaxMode,
-        "EdType": EdType,
-        "CodeGen": CodeGen,
-        "IncType": IncType,
-        "OccType": OccType,
-        "OrgType": OrgType,
-        "OwnCar": OwnCar}
-
+        "Ext2": float(Ext2),
+        "Ext3": float(Ext3),
+        "YearLastPhoneChange": float(YearLastPhoneChange),
+        "RegRateCity": int(RegRateCity),
+        "YearsEmp": float(YearsEmp),
+        "RegRateCli": int(RegRateCli),
+        "AmtGd": float(AmtGd),
+        "AmtBlcMean": float(AmtBlcMean),
+        "AmtCredit": float(AmtCredit),
+        "DaysBirth": int(DaysBirth),
+        "FloMaxMode": float(FloMaxMode),
+        "EdType": str(EdType),
+        "CodeGen": str(CodeGen),
+        "IncType": str(IncType),
+        "OccType": str(OccType),
+        "OrgType": str(OrgType),
+        "OwnCar": str(OwnCar)
+        }
     if st.button("Predict"):
         response = requests.post(
-            "http://ec2-108-137-94-218.ap-southeast-3.compute.amazonaws.com/:8090/predict", json=data)
+            "http://ec2-108-137-94-218.ap-southeast-3.compute.amazonaws.com:8090/predict", json=data)
         prediction = response.text
         if prediction == "0":
             st.caption(f"The prediction from model: {prediction}")
